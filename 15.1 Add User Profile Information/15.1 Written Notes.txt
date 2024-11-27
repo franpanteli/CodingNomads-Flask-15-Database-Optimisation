@@ -1,0 +1,45 @@
+-> User Profiles Lesson overview for creating user profile pages in a social app built with Python and Flask
+    -> Focus on adding user profile information, pinging users, and integrating time zones with Flask-Moment
+    -> Emphasis on allowing users and admins to edit profiles
+    -> User profiles require a database model with fields like name, location, bio, and last seen date
+    -> User model extended with additional fields for storing user data like name, location, and bio
+    -> Last seen field is set to the current time with the default value as the current UTC time
+    -> New fields are necessary to store unique user information on their profile page
+
+-> Adding User Profile Information
+    -> First step is to add additional columns to the User model for name, location, bio, and last seen
+    -> Columns are defined as db.String for short text (like name and location) and db.Text for longer text (like bio)
+    -> last_seen uses db.DateTime and is set to default to the current UTC time via datetime.utcnow()
+
+-> Pinging Your Users
+    -> Introduces the concept of "pinging" users to update their last_seen field whenever they make a request
+    -> Function to update the last_seen field is called every time a user makes an authenticated request
+    -> The `ping()` function updates the last_seen timestamp to the current time
+    -> The `before_request` function calls `ping()` on authenticated users to update their last_seen time
+
+-> Flask-Moment for Time Handling
+    -> Explanation of handling different time zones for users with Flask-Moment, which integrates Moment.js with Flask
+    -> Flask-Moment allows for converting UTC time into the user's local time for displaying timestamps like last seen
+    -> Flask-Moment is installed via `pip install flask-moment` and requires the inclusion of Moment.js in the templates
+    -> Flask-Moment is used in the templates to display times using the `moment` object, which formats the `last_seen` field
+
+-> User View Function
+    -> User view function retrieves the user profile from the database based on the username in the URL
+    -> The dynamic route `@main.route('/user/<username>')` handles displaying the profile page for a given user
+    -> If the user is not found, Flask returns a 404 error page
+
+-> User Template
+    -> Template structure for displaying the user profile information in HTML
+    -> Displays user details like name, location, bio, and last seen time in a Bootstrap table
+    -> User's email is only shown if the current user is an admin
+    -> `moment()` is used to convert the UTC `last_seen` time into a relative time format (e.g., "5 minutes ago")
+
+-> Profile Link
+    -> A link to the user's profile is added to the navigation bar if the user is authenticated
+    -> Unauthenticated users do not see a profile link in the navbar
+    -> The profile link redirects authenticated users to their own profile page
+
+-> Summary of Adding Info to a User Profile in Python + Flask
+    -> To add profile info, extend the User model with name, location, bio, and last_seen columns
+    -> The ping function updates the user's last_seen time on each request
+    -> Flask-Moment helps display user times in local time by converting UTC times into the user's timezone
