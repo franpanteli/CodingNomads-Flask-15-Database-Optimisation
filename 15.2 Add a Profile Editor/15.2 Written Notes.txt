@@ -1,47 +1,47 @@
 -> User Profiles Lesson: Add a Profile Editor
-	-> Learn how to add profile editing functionality to a user profile page in a Python Flask app
-	-> Challenge of adding an administrator-level profile editor for editing other users' information
+    -> Learn how to add profile editing functionality to a user profile page in a Python Flask app
+    -> Challenge of adding an administrator-level profile editor for editing other users' information
 
 -> Edit Profile Form
-	-> The profile editor form allows users to modify their details, including their name, location, and bio
-	-> Located in main/forms.py
-	-> Form fields include name, location, bio, with validation to limit text length
-	-> TextAreaField is used for bio, allowing users to write longer descriptions
-	-> The form doesn't enforce a bio validation, so users can leave it blank if they choose
+    -> The profile editor form allows users to modify their details, including their name, location, and bio
+    -> Located in main/forms.py
+    -> Form fields include name, location, bio, with validation to limit text length
+    -> TextAreaField is used for bio, allowing users to write longer descriptions
+    -> The form doesn't enforce bio validation, so users can leave it blank if they choose
 
 -> View Function
-	-> The view function to handle the profile editor is defined in main/views.py
-	-> A route is set for editing the profile with methods GET and POST
-	-> When the form is submitted, user data is updated with the new information entered by the user
-	-> The user's name, location, and bio are updated and committed to the database
-	-> If the form is not yet submitted, the existing user information is pre-filled into the form fields
-	-> Upon successful submission, a flash message is displayed, and the user is redirected to their profile page
+    -> The view function to handle the profile editor is defined in main/views.py
+    -> A route is set for editing the profile with methods GET and POST
+    -> When the form is submitted, user data is updated with the new information entered by the user
+    -> The user's name, location, and bio are updated and committed to the database
+    -> If the form is not yet submitted, the existing user information is pre-filled into the form fields
+    -> Upon successful submission, a flash message is displayed, and the user is redirected to their profile page
 
 -> Add A Button
-	-> A button is added to the user's profile page for easy access to the profile editor
-	-> The button is only shown if the currently authenticated user is the owner of the profile
-	-> The button is displayed using an if statement in the user template (user.html)
-	-> This ensures that only the user themselves can edit their own profile
+    -> A button is added to the user's profile page for easy access to the profile editor
+    -> The button is only shown if the currently authenticated user is the owner of the profile
+    -> The button is displayed using an if statement in the user template (user.html)
+    -> This ensures that only the user themselves can edit their own profile
 
 -> Create An Administrator-Level Profile Editor
-	-> Administrators are granted the ability to edit any user's profile, including their username, confirmed status, and role
-	-> Admins have additional responsibilities and should handle user data with caution
-	-> A form is created in main/forms.py with fields for username, confirmed status, role, name, location, and bio
-	-> A dropdown (SelectField) is used for selecting roles, with integer values for role identification
-	-> The form's username field ensures the edited username isn't already taken by another user
+    -> Administrators are granted the ability to edit any user's profile, including their username, confirmed status, and role
+    -> Admins have additional responsibilities and should handle user data with caution
+    -> A form is created in main/forms.py with fields for username, confirmed status, role, name, location, and bio
+    -> A dropdown (SelectField) is used for selecting roles, with integer values for role identification
+    -> The form's username field ensures the edited username isn't already taken by another user
 
 -> View Function for Admin Editor
-	-> The view function for the admin-level editor is defined with an additional check to ensure the user is an authenticated admin
-	-> The route includes a dynamic user ID to specify which user's profile to edit
-	-> Similar to the user's profile editor view function, the admin function allows for the modification of the same fields
-	-> Admins can edit any user's profile details by querying the user based on their ID
+    -> The view function for the admin-level editor is defined with an additional check to ensure the user is an authenticated admin
+    -> The route includes a dynamic user ID to specify which user's profile to edit
+    -> Similar to the user's profile editor view function, the admin function allows for the modification of the same fields
+    -> Admins can edit any user's profile details by querying the user based on their ID
 
 -> Add The Admin Edit Button
-	-> A button is added to the user profile page for admins to edit any user's profile
-	-> The button uses a Bootstrap class for styling and is linked to the admin's edit page for a specific user
-	-> Admins can click the button to modify any user's profile information
+    -> A button is added to the user profile page for admins to edit any user's profile
+    -> The button uses a Bootstrap class for styling and is linked to the admin's edit page for a specific user
+    -> Admins can click the button to modify any user's profile information
 
 -> Summary: Create a User Profile Editor in Python + Flask
-	-> The process involves creating a form for users to edit their profile information, a view function to handle the form submission, and a button for easy access
-	-> For admins, a separate form and view function are created to edit any user's information
-	-> The admin profile editor includes additional fields and checks for user roles and permissions
+    -> The process involves creating a form for users to edit their profile information, a view function to handle the form submission, and a button for easy access
+    -> For admins, a separate form and view function are created to edit any user's information
+    -> The admin profile editor includes additional fields and checks for user roles and permissions

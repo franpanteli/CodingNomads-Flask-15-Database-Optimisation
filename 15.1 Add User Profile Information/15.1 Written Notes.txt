@@ -7,13 +7,13 @@
     -> New fields are necessary to store unique user information on their profile page
 
 -> Adding User Profile Information
-    -> First step is to add additional columns to the User model for name, location, bio, and last seen
+    -> The first step is to add additional columns to the User model for name, location, bio, and last seen
     -> Columns are defined as db.String for short text (like name and location) and db.Text for longer text (like bio)
     -> last_seen uses db.DateTime and is set to default to the current UTC time via datetime.utcnow()
 
 -> Pinging Your Users
     -> Introduces the concept of "pinging" users to update their last_seen field whenever they make a request
-    -> Function to update the last_seen field is called every time a user makes an authenticated request
+    -> A function to update the last_seen field is called every time a user makes an authenticated request
     -> The `ping()` function updates the last_seen timestamp to the current time
     -> The `before_request` function calls `ping()` on authenticated users to update their last_seen time
 
@@ -24,14 +24,14 @@
     -> Flask-Moment is used in the templates to display times using the `moment` object, which formats the `last_seen` field
 
 -> User View Function
-    -> User view function retrieves the user profile from the database based on the username in the URL
+    -> The user view function retrieves the user profile from the database based on the username in the URL
     -> The dynamic route `@main.route('/user/<username>')` handles displaying the profile page for a given user
     -> If the user is not found, Flask returns a 404 error page
 
 -> User Template
     -> Template structure for displaying the user profile information in HTML
     -> Displays user details like name, location, bio, and last seen time in a Bootstrap table
-    -> User's email is only shown if the current user is an admin
+    -> The user's email is only shown if the current user is an admin
     -> `moment()` is used to convert the UTC `last_seen` time into a relative time format (e.g., "5 minutes ago")
 
 -> Profile Link
