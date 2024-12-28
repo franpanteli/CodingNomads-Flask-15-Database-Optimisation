@@ -5,3 +5,4 @@ Here is an example GIF showing the application in action:
 
 ![App demo](https://github.com/franpanteli/12/blob/main/12%20Notes%20Word%20Cloud%20Giff.gif)
 [Used a word cloud generator](https://wordart.com/create)
+https://github.com/franpanteli/CodingNomads-Flask-Database-Optimisation.git
