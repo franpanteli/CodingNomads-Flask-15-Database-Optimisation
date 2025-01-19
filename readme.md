@@ -1,6 +1,6 @@
 # CodingNomads-Flask-15-Database-Optimisation
 ## Repository File Tree
-This repository contains my work for the 16th module in the [Coding Nomads Flask Web Framework](https://codingnomads.com/course/python-flask-web-framework) course. I completed this 21-module course as part of my independent learning, to invest in my Python skills. I produced an in-depth library of resources on this module, whose file tree is provided below. 
+This repository contains my work for the 15th module in the [Coding Nomads Flask Web Framework](https://codingnomads.com/course/python-flask-web-framework) course. I completed this 21-module course as part of my independent learning, to invest in my Python skills. I produced an in-depth library of resources on this module, whose file tree is provided below. 
 
 <img width="880" alt="Screenshot 2025-01-19 at 15 48 30" src="https://github.com/user-attachments/assets/4cb2fcc2-5401-47d4-862b-12945c15bbba" />
 
