@@ -1,86 +1,86 @@
--> 15) User Profiles Lesson
-    -> Add User Avatars
-    -> 12 min to complete · By Brandon Gigous
-    -> Introduction
-    -> What is a Profile Avatar
-    -> Unicornify
-    -> Hashlib
-    -> Unicornify User Method
-    -> User Profile Images
-    -> Generating Hashes
-    -> Summary: Add User Avatars to Your Python + Flask App
+-> 15) user profiles lesson  
+    -> add user avatars  
+    -> 12 min to complete · by brandon gigous  
+    -> introduction  
+    -> what is a profile avatar  
+    -> unicornify  
+    -> hashlib  
+    -> unicornify user method  
+    -> user profile images  
+    -> generating hashes  
+    -> summary: add user avatars to your python + flask app  
 
--> What is a Profile Avatar
-    -> The idea is to allow users to have avatars or profile pictures
-    -> The profile picture is a way for users to represent themselves visually
-    -> The service called Unicornify helps with generating unique avatars for users
+-> what is a profile avatar  
+    -> the idea is to allow users to have avatars or profile pictures  
+    -> the profile picture is a way for users to represent themselves visually  
+    -> the service called unicornify helps with generating unique avatars for users  
 
--> Unicornify
-    -> Unicornify is a service that generates unique unicorn images based on an MD5 hash
-    -> It was created by Benjamin Dumke-von der Ehe
-    -> It works similarly to Gravatar but uses unicorns instead of standard avatars
-    -> The URL format to generate a unicorn image is:
-        -> https://unicornify.pictures/avatar/$HASH?s=$SIZE
-        -> $HASH is a hexadecimal number (up to 64 digits)
-        -> $SIZE is the image size, a power of 2 between 32 and 128
+-> unicornify  
+    -> unicornify is a service that generates unique unicorn images based on an md5 hash  
+    -> it was created by benjamin dumke-von der ehe  
+    -> it works similarly to gravatar but uses unicorns instead of standard avatars  
+    -> the url format to generate a unicorn image is:  
+        -> https://unicornify.pictures/avatar/$hash?s=$size  
+        -> $hash is a hexadecimal number (up to 64 digits)  
+        -> $size is the image size, a power of 2 between 32 and 128  
 
--> Hashlib
-    -> To generate the MD5 hashes, the user's email is used as input
-    -> Python's standard library hashlib is used to create the hash
-    -> Example:
-        -> import hashlib
-        -> hashlib.md5('paul@example.com'.encode('utf-8')).hexdigest()
+-> hashlib  
+    -> to generate the md5 hashes, the user's email is used as input  
+    -> python's standard library hashlib is used to create the hash  
+    -> example:  
+        -> import hashlib  
+        -> hashlib.md5('paul@example.com'.encode('utf-8')).hexdigest()  
 
--> Unicornify User Method
-    -> A method is defined to generate the MD5 hash and retrieve the unicorn avatar image
-    -> Example method:
-        -> url = 'https://unicornify.pictures/avatar'
-        -> hash = hashlib.md5(self.email.lower().encode('utf-8')).hexdigest()
-        -> return f'{url}/{hash}?s={size}'
+-> unicornify user method  
+    -> a method is defined to generate the md5 hash and retrieve the unicorn avatar image  
+    -> example method:  
+        -> url = 'https://unicornify.pictures/avatar'  
+        -> hash = hashlib.md5(self.email.lower().encode('utf-8')).hexdigest()  
+        -> return f'{url}/{hash}?s={size}'  
 
--> User Profile Images
-    -> To include the unicorn avatar in user profiles, custom CSS classes are defined
-    -> These classes help position the image and profile information
-    -> The profile picture is displayed using the class "img-rounded profile-thumbnail"
-    -> The user’s profile information is placed in the "profile-header" class
+-> user profile images  
+    -> to include the unicorn avatar in user profiles, custom css classes are defined  
+    -> these classes help position the image and profile information  
+    -> the profile picture is displayed using the class "img-rounded profile-thumbnail"  
+    -> the user’s profile information is placed in the "profile-header" class  
 
--> Example in Flask Shell
-    -> Example:
-        -> User(email="paul@example.com")
-        -> u.unicornify()
-        -> 'https://unicornify.pictures/avatar/a8780c6edeb8eda5678a38e94b8ecafe?s=128'
-        -> u.unicornify(size=32)
-        -> 'https://unicornify.pictures/avatar/a8780c6edeb8eda5678a38e94b8ecafe?s=32'
+-> example in flask shell  
+    -> example:  
+        -> user(email="paul@example.com")  
+        -> u.unicornify()  
+        -> 'https://unicornify.pictures/avatar/a8780c6edeb8eda5678a38e94b8ecafe?s=128'  
+        -> u.unicornify(size=32)  
+        -> 'https://unicornify.pictures/avatar/a8780c6edeb8eda5678a38e94b8ecafe?s=32'  
 
--> Applying CSS
-    -> CSS is used to style the avatar image and position the profile information
-    -> The styles can be linked in the base.html file, which applies them to the templates
+-> applying css  
+    -> css is used to style the avatar image and position the profile information  
+    -> the styles can be linked in the base.html file, which applies them to the templates  
 
--> Dropdown for Navigation
-    -> A dropdown menu is added to the navigation bar to display the user’s avatar
-    -> Example:
-        -> <img src="{{ current_user.unicornify(size=32) }}">
-        -> The dropdown also includes links to change password, email, or log out
+-> dropdown for navigation  
+    -> a dropdown menu is added to the navigation bar to display the user’s avatar  
+    -> example:  
+        -> <img src="{{ current_user.unicornify(size=32) }}">  
+        -> the dropdown also includes links to change password, email, or log out  
 
--> Generating Hashes
-    -> Hashes are computationally intensive, so caching is used to reduce server workload
-    -> The hash is stored once and used for future avatar generation
-    -> A new hash is generated only if the user’s email changes or if it's the first time
+-> generating hashes  
+    -> hashes are computationally intensive, so caching is used to reduce server workload  
+    -> the hash is stored once and used for future avatar generation  
+    -> a new hash is generated only if the user’s email changes or if it's the first time  
 
--> Example of User Class with Caching
-    -> A new method is added to cache the MD5 hash for the user
-    -> The hash is stored in a database column
-    -> Example:
-        -> avatar_hash = db.Column(db.String(32))
-        -> def email_hash(self):
-            -> return hashlib.md5(self.email.lower().encode('utf-8')).hexdigest()
-        -> def unicornify(self, size=128):
-            -> return f'{url}/{self.avatar_hash}?s={size}'
+-> example of user class with caching  
+    -> a new method is added to cache the md5 hash for the user  
+    -> the hash is stored in a database column  
+    -> example:  
+        -> avatar_hash = db.Column(db.String(32))  
+        -> def email_hash(self):  
+            -> return hashlib.md5(self.email.lower().encode('utf-8')).hexdigest()  
+        -> def unicornify(self, size=128):  
+            -> return f'{url}/{self.avatar_hash}?s={size}'  
 
--> Summary: Add User Avatars to Your Python + Flask App
-    -> An avatar is a profile picture used to represent a user
-    -> Unicornify generates unique unicorn avatars based on MD5 hashes of user emails
-    -> Hashlib is used to generate MD5 hashes in Python
-    -> A method is created to generate the unicorn avatar for each user
-    -> Custom CSS is used to style the avatar images in the user profile
-    -> Caching is used to store the generated hash for quicker avatar retrieval
+-> summary: add user avatars to your python + flask app  
+    -> an avatar is a profile picture used to represent a user  
+    -> unicornify generates unique unicorn avatars based on md5 hashes of user emails  
+    -> hashlib is used to generate md5 hashes in python  
+    -> a method is created to generate the unicorn avatar for each user  
+    -> custom css is used to style the avatar images in the user profile  
+    -> caching is used to store the generated hash for quicker avatar retrieval  
